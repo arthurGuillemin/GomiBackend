@@ -1,6 +1,7 @@
 
 flask
 flask_cors
+Flask-Limiter
 python-dotenv
 supabase
 PyJWT
