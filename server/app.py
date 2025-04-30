@@ -25,5 +25,5 @@ app.register_blueprint(auth_routes, url_prefix="/auth")
 app.register_blueprint(test_routes, url_prefix="/test")
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+app.run(host="0.0.0.0", port=5000, debug=True)
+
