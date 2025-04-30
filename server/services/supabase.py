@@ -14,26 +14,6 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-#   JWT  #
-
-def generate_token(user_id):
-    """Génère un token JWT"""
-    payload = {
-        "user_id": user_id,
-        "exp": datetime.now() + timedelta(hours=2)
-    }
-    return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
-
-def decode_token(token):
-    """Décode un token JWT"""
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-        return payload["user_id"]
-    except jwt.ExpiredSignatureError:
-        return None
-    except jwt.InvalidTokenError:
-        return None
-
 
 #       test       #
 
@@ -64,21 +44,16 @@ def create_user(username, email, password):
     return {"message": "Utilisateur créé avec succès"}
 
 def login_user(email, password):
-    """Vérifier les informations d'identification et retourner un token JWT + user_id"""
+    """Vérifie les identifiants et retourne uniquement l'ID utilisateur si ok"""
     response = supabase_client.table("Users").select("id, password").eq("email", email).execute()
-    
+
     if not response.data or len(response.data) == 0:
         return {"error": "Email ou mot de passe incorrect"}
-    
     user = response.data[0]
     if not check_password_hash(user['password'], password):
         return {"error": "Email ou mot de passe incorrect"}
-    
-    token = generate_token(user['id'])
     return {
-        "message": "Connexion réussie",
-        "token": token,
-        "user_id": user["id"] 
+        "user_id": user["id"]
     }
 
 def get_user_by_id(user_id):

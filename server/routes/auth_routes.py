@@ -1,19 +1,20 @@
 from flask import Blueprint, request, jsonify
+from flask_jwt_extended import create_access_token
 from services.supabase import create_user, login_user
 
 auth_routes = Blueprint("auth_routes", __name__)
 
 @auth_routes.route("/signup", methods=["POST"])
 def signup():
-    """Créer un compte utilisateur"""
+    """ Créer un compte"""
     data = request.get_json()
     username = data.get("username")
     email = data.get("email")
-    password = data.get("password")  
-    if not email or not password: 
-        return jsonify({"error": "Nom, email et mot de passe requis"}), 400
-    result = create_user(username, email, password)
+    password = data.get("password")
     
+    if not email or not password:
+        return jsonify({"error": "Username, email et mot de passe requis"}), 400
+    result = create_user(username, email, password)
     return jsonify(result), 201
 
 @auth_routes.route("/login", methods=["POST"])
@@ -27,4 +28,13 @@ def login():
         return jsonify({"error": "Email et mot de passe requis"}), 400
 
     result = login_user(email, password)
-    return jsonify(result), 200
+
+    if "error" in result:
+        return jsonify(result), 401
+
+    token = create_access_token(identity=result["user_id"])
+    return jsonify({
+        "message": "Connexion réussie",
+        "token": token,
+        "user_id": result["user_id"]
+    }), 200
