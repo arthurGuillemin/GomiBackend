@@ -36,5 +36,5 @@ python app.py
 
 🧑‍💻 Développé avec : 
 
-Flask  ; Flask-JWT-Extended   ;Supabase Python client
+Flask   Flask-JWT-Extended   Supabase Python client
 
