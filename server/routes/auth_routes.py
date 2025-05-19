@@ -32,7 +32,7 @@ def login():
     if "error" in result:
         return jsonify(result), 401
 
-    token = create_access_token(identity=result["user_id"])
+    token = create_access_token(identity=result["user_id"] , expires_delta= False)
     return jsonify({
         "message": "Connexion réussie",
         "token": token,
