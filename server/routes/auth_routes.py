@@ -13,7 +13,7 @@ def signup():
     password = data.get("password")
     
     if not email or not password:
-        return jsonify({"error": "Username, email et mot de passe requis"}), 400
+        return jsonify({"error": "Username, email et mot de passe requis pour l'inscription"}), 400
     result = create_user(username, email, password)
     return jsonify(result), 201
 
@@ -25,7 +25,7 @@ def login():
     password = data.get("password")
 
     if not email or not password:
-        return jsonify({"error": "Email et mot de passe requis"}), 400
+        return jsonify({"error": "Email et mot de passe requis opur la conneciton"}), 400
 
     result = login_user(email, password)
 
