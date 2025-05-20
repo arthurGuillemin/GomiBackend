@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from services.supabase import test_db_connection
+from app.services.supabase import test_db_connection
 
 test_routes = Blueprint("test_routes", __name__)
 
