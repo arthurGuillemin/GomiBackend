@@ -1,0 +1,9 @@
+
+flask
+flask_cors
+Flask-Limiter
+Flask-JWT-Extended
+python-dotenv
+supabase
+PyJWT
+Werkzeug
