@@ -10,8 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
-
+CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
 # JWT config
 app.config["JWT_SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
