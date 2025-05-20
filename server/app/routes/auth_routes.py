@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token
-from services.supabase import create_user, login_user
+from app.services.supabase import create_user, login_user
 
 auth_routes = Blueprint("auth_routes", __name__)
 
