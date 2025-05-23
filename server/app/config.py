@@ -10,7 +10,8 @@ class Config:
     JWT_HEADER_TYPE = "Bearer"
     CORS_ORIGINS = [
         "http://localhost:5173",
-        "https://682c61b0f8a2f90008bba62c--gomiproject.netlify.app"
+        "https://gomiproject.netlify.app",
+        "http://localhost:5174",
     ]
     RATELIMIT_DEFAULT = "10 per minute"
     SUPABASE_KEY= os.getenv("SUPABASE_KEY")

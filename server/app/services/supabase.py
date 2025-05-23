@@ -78,7 +78,7 @@ def get_username_by_id(user_id):
         if not response.data: 
             return {"error": "Utilisateur non trouvé"}
 
-        return {"usernale": response.data["username"]} 
+        return {"username": response.data["username"]} 
 
     except Exception as e:
         return {"error": str(e)} 
