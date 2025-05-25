@@ -12,7 +12,6 @@ class Config:
         "http://localhost:5173",
         "https://gomiproject.netlify.app",
         "http://localhost:5174",
-        "https://gomibackend.onrender.com",
     ]
     RATELIMIT_DEFAULT = "10 per minute"
     SUPABASE_KEY= os.getenv("SUPABASE_KEY")
