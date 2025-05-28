@@ -3,6 +3,7 @@ flask
 flask_cors
 Flask-Limiter
 Flask-JWT-Extended
+flask_talisman
 python-dotenv
 supabase
 PyJWT

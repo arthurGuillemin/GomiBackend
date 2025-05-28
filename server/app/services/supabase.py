@@ -44,8 +44,8 @@ def create_user(username, email, password):
     return {"message": "Utilisateur créé avec succès"}
 
 def login_user(email, password):
-    """Vérifie les identifiants et retourne uniquement l'ID utilisateur si ok"""
-    response = supabase_client.table("Users").select("id, password").eq("email", email).execute()
+    """Vérifie les identifiants et retourne id username et email si ok"""
+    response = supabase_client.table("Users").select("id, password , username , email").eq("email", email).execute()
 
     if not response.data or len(response.data) == 0:
         return {"error": "Email ou mot de passe incorrect"}
@@ -53,7 +53,9 @@ def login_user(email, password):
     if not check_password_hash(user['password'], password):
         return {"error": "Email ou mot de passe incorrect"}
     return {
-        "user_id": user["id"]
+        "user_id": user["id"],
+        "email": user["email"],
+        "username": user["username"]
     }
 
 def get_user_by_id(user_id):
@@ -78,7 +80,7 @@ def get_username_by_id(user_id):
         if not response.data: 
             return {"error": "Utilisateur non trouvé"}
 
-        return {"usernale": response.data["username"]} 
+        return {"username": response.data["username"]} 
 
     except Exception as e:
         return {"error": str(e)} 
