@@ -15,16 +15,6 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
-#       test       #
-
-def test_db_connection():
-    """Teste la connexion à la db en recuperant tout les Users    A SUPPRIMER !!!!!!!!"""
-    try:
-        response = supabase_client.table("Users").select("*").execute()
-        return response.data 
-    except Exception as e:
-        return {"error": str(e)}
-    
 
 #  Users    #
 
