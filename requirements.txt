@@ -8,3 +8,5 @@ python-dotenv
 supabase
 PyJWT
 Werkzeug
+flasgger
+marshmallow
