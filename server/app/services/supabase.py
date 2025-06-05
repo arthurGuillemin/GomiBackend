@@ -18,9 +18,23 @@ supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 #  Users    #
 
+#GET
+def get_user_by_id(user_id):
+    """Récupérer un utilisateur spécifique par son ID"""
+    try:
+        response = supabase_client.table("Users").select("*").eq("id", user_id).single().execute()
+
+        if not response.data:  
+            return {"error": "Utilisateur non trouvé"}
+
+        return response.data 
+
+    except Exception as e:
+        return {"error": str(e)}  
+    
 
 
-# GET
+# POST
 
 def create_user(username, email, password):
     """Créer un nouvel utilisateur dans la base de données"""
@@ -48,32 +62,6 @@ def login_user(email, password):
         "username": user["username"]
     }
 
-def get_user_by_id(user_id):
-    """Récupérer un utilisateur spécifique par son ID"""
-    try:
-        response = supabase_client.table("Users").select("*").eq("id", user_id).single().execute()
-
-        if not response.data:  
-            return {"error": "Utilisateur non trouvé"}
-
-        return response.data 
-
-    except Exception as e:
-        return {"error": str(e)}  
-    
-
-def get_username_by_id(user_id):
-    """Récupérer uniquement le username d'un utilisateur par son ID"""
-    try:
-        response = supabase_client.table("Users").select("username").eq("id", user_id).single().execute()
-
-        if not response.data: 
-            return {"error": "Utilisateur non trouvé"}
-
-        return {"username": response.data["username"]} 
-
-    except Exception as e:
-        return {"error": str(e)} 
     
 # Update
 
