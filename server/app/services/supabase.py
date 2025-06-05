@@ -93,7 +93,7 @@ def delete_user(user_id):
             .eq("id", user_id) \
             .execute()
 
-        if response.data:
+        if response.data or len(response.data) == 0:
             return {"message": "Utilisateur supprimé avec succès"}
 
         return {"error": "Utilisateur introuvable ou déjà supprimé"}
