@@ -30,7 +30,7 @@ jobs:
           echo "SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}" >> $GITHUB_ENV
           echo "JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}" >> $GITHUB_ENV
 
-      - name: Run tests with pytest
+      - name: Run tests 
         run: |
           pytest server/app/tests --maxfail=1 --disable-warnings -q
 
