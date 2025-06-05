@@ -12,6 +12,7 @@ class Config:
         "http://localhost:5173",
         "https://gomiproject.netlify.app"
     ]
-    RATELIMIT_DEFAULT = "10 per minute"
+    RATELIMIT_DEFAULT = "200 per day"
     SUPABASE_KEY= os.getenv("SUPABASE_KEY")
     SUPABASE_URL = os.getenv("SUPABASE_URL")
+    

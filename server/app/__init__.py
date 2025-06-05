@@ -24,7 +24,27 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     # Swaggr
-    swagger = Swagger(app)
+    template = {
+    "swagger": "2.0",
+    "info": {
+        "title": "Gomi API",
+        "description": "API pour gerer les utilisateurs et l'authentification",
+        "contact": {
+            "name": "Arthur Guillemin",
+            "url": "https://github.com/arthurGuillemin",
+            "email": "aguillemin291@gmail.com",
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "https://flask-backend-gomi-hbbjbyc9agend4fh.francecentral-01.azurewebsites.net/",  
+    "basePath": "/",
+    "schemes": ["https", "http"]
+}
+
+    swagger = Swagger(app , template=template)
     
 
     # Extensions
