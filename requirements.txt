@@ -10,3 +10,4 @@ PyJWT
 Werkzeug
 flasgger
 marshmallow
+gunicorn

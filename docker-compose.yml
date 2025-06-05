@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  flask_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flask_app
+    expose:
+      - "8000"
+    networks:
+      - backendprovisional_default
+
+  nginx_reverse_proxy:
+    image: nginx:latest
+    container_name: nginx_reverse_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - flask_app
+    networks:
+      - backendprovisional_default
+
+networks:
+  backendprovisional_default:
+    driver: bridge
